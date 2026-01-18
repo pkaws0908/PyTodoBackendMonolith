@@ -7,7 +7,7 @@ stages:
         steps:
         - task: PublishBuildArtifacts@1
           inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)/app.py'
+            PathtoPublish: '$(System.DefaultWorkingDirectory)/app.py'
             ArtifactName: 'todoapi'
             publishLocation: 'Container'
   - stage: cdstage
