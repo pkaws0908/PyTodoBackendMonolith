@@ -1,0 +1,13 @@
+trigger: none
+pool: pkagent
+stages:
+  - stage: cistage
+    jobs:
+      - job: publishJob
+        steps:
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)/app.py'
+            ArtifactName: 'todoapi'
+            publishLocation: 'Container'
+  - stage: 
