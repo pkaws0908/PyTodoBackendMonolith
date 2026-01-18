@@ -10,4 +10,27 @@ stages:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)/app.py'
             ArtifactName: 'todoapi'
             publishLocation: 'Container'
-  - stage: 
+  - stage: cdstage
+    jobs:
+      - deployment: tododeploy
+        environment: 
+         name: tododev
+         resourceName: todovm002
+         resourceType: virtualMachine   
+        strategy:
+         runOnce:
+          deploy:
+            steps:
+            - task: DownloadBuildArtifacts@1
+              inputs:
+                buildType: 'current'
+                downloadType: 'single'
+                artifactName: 'todoapi'
+                downloadPath: '/home/sysadmin/todo'
+                cleanDestinationFolder: true
+            - task: Bash@3
+              inputs:
+                targetType: 'inline'
+                script: 'sudo systemctl restart pytodo.service'
+           
+
