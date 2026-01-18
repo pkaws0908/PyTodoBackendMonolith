@@ -8,7 +8,7 @@ stages:
         - task: PublishBuildArtifacts@1
           inputs:
             PathtoPublish: '$(System.DefaultWorkingDirectory)/app.py'
-            ArtifactName: 'todoapi'
+            ArtifactName: 'todo'
             publishLocation: 'Container'
   - stage: cdstage
     jobs:
@@ -25,8 +25,8 @@ stages:
               inputs:
                 buildType: 'current'
                 downloadType: 'single'
-                artifactName: 'todoapi'
-                downloadPath: '/home/sysadmin/todo'
+                artifactName: 'todo'
+                downloadPath: '/home/sysadmin/'
                 cleanDestinationFolder: true
             - task: Bash@3
               inputs:
